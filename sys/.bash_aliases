@@ -1,9 +1,10 @@
 #tmux
-alias tmux='tmux -f ~/.tmux/tmux.conf'
+alias tmux='tmux -f ~/.tmux.conf'
 alias ta='tmux attach -t'
 
 #python 
-alias python='python3'
+alias py='python3'
+alias pyenv='python3 -m venv venv && source venv/bin/activate'
 
 #xclip 
 xp='xclip -o -selection clipboard'
@@ -28,9 +29,12 @@ alias grm='git rm'
 alias grmc='git rm --cached'
 
 alias gst='git status'
+alias gcm='git commit -m'
 alias gp='git push'
 
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 
+#clear alias
+alias cl='clear'
 
 
