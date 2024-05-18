@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#Count by every 9 lines, print lines 1 & 2, combine into one, select columns
+input=$(echo "$(ifconfig)")
+length=$(echo $input | wc -l)
+
+for ((i=0; i<=length; i+=1)); do
+	((x=$i*9+1, y=$i*9+2))
+	echo $(echo "$input" | sed -n "$x, $y p" | sed -z "s/\n//g" |awk '{print $1, $6, $8}' )
+done
+
+
+
+
+###
+#Failed regex attempt at doing this
+#regex='([a-zA-Z0-9]+):(?=.*?inet)'
+#
+# Use grep with Perl-compatible regular expressions to match non-overlapping Ethernet objects
+#echo "$input" | grep -Po "$regex" | while read -r adapter; do
+#    ip_address=$(grep -oP "$adapter:.*?inet \K[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" <<< "$input")
+#    netmask=$(grep -oP "$adapter:.*?netmask \K[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" <<< "$input")
+# 
+#    echo "$adapter $ip_address $netmask"
+#    echo "---"
+#done
