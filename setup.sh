@@ -14,7 +14,7 @@
 #   remove the link: `rm <link>`
 
 DOTFILES_DIR=$HOME/.dotfiles
-STOW_FOLDERS="tmux,git,bin"
+STOW_FOLDERS="tmux,git,sys,bin"
 
 # ==== FUNCTIONS =====
 function setup_symlinks {
