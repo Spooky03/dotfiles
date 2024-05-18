@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# Install.sh
 # ==========
 #
 # [IMPORTANT NOTE] Make sure both Git & GNU's Stow are installed before running
@@ -12,18 +14,18 @@
 #   remove the link: `rm <link>`
 
 DOTFILES_DIR=$HOME/.dotfiles
-STOW_FOLDERS="tmux"
+STOW_FOLDERS="tmux, git"
 
 # ==== FUNCTIONS =====
 function setup_symlinks {
-	  if command -v stow 2>&1 > /dev/null;
-		    then
-			        echo "Creating symlinks..."
+  if command -v stow 2>&1 > /dev/null;
+  then
+    echo "Creating symlinks..."
 
-				    # https://stackoverflow.com/questions/10586153/how-to-split-a-string-into-an-array-in-bash
-				        # warning, this is read to a 'global' folders array .. therefore this function
-					    # is NOT pure .. keep that in mind.  This should pose an issue, but it's worth noting.
-					        readarray -td, folders <<< "$(echo $STOW_FOLDERS),"
+    # https://stackoverflow.com/questions/10586153/how-to-split-a-string-into-an-array-in-bash
+    # warning, this is read to a 'global' folders array .. therefore this function
+    # is NOT pure .. keep that in mind.  This should pose an issue, but it's worth noting.
+    readarray -td, folders <<< "$(echo $STOW_FOLDERS),"
     unset 'folders[-1]'
     declare -p folders 2>&1 > /dev/null
 
@@ -58,12 +60,12 @@ The following directories will be symlinked to $HOME:
 
   ${NORMALIZED_STOW_FOLDERS}
 
-Is this okay? (Y/N)
+Is this okay? (Y/n)
 "
 
 read USER_CONFIRMATION
 
-if [ $(echo $USER_CONFIRMATION | tr '[:upper:]' '[:lower:]') == 'y' ]
+if [ $USER_CONFIRMATION  != 'n' ] || [ -z $USER_CONFIRMATION ]
 then
   # cd / push dotfiles directory to top of dir stack
   pushd $DOTFILES_DIR 2>&1 > /dev/null
