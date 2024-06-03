@@ -1,0 +1,1 @@
+ Invoke-Command { & "powershell.exe" } -NoNewScope # PowerShell 5
